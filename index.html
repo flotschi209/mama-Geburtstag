@@ -1,0 +1,108 @@
+<!DOCTYPE html>
+<html lang="de">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Alles Gute Mama!</title>
+    <link rel="stylesheet" href="style.css"> <!-- Lädt das gemeinsame Design -->
+</head>
+<body>
+
+    <!-- KOPFLEISTE -->
+    <nav class="navbar">
+        <a href="index.html" class="home-btn">Home</a>
+    </nav>
+
+    <!-- START-VORHANG -->
+    <div id="start-vorhang">
+        <h1>Alles Gute, Mama! ❤️</h1>
+        <p>Eine kleine, digitale Überraschung nur für dich.</p>
+        <p class="scroll-hint">Wische nach unten 👇</p>
+    </div>
+
+    <!-- Die zwei oberen Kästchen (Fotogalerie) -->
+    <div class="gallery">
+        <div class="foto-karte">
+            <img src="pictures/HarryPotterMuseum.jpg" alt="Erinnerung 1">
+            <p>Weißt du noch damals im Urlaub?</p>
+        </div>
+        <div class="foto-karte">
+            <img src="pictures/MamaMitBaby.jpeg" alt="Erinnerung 2">
+            <p>Ein unvergesslicher Tag!</p>
+        </div>
+    </div>
+
+    <!-- HAUPTMENÜ -->
+    <main id="hauptmenue">
+        <h2>Deine Momente</h2>
+        
+        <div class="grid-container">
+            <!-- Das sind jetzt normale HTML-Links zu anderen Dateien -->
+            <a href="unterseiten/segeln.html" class="hobby-btn">
+                <span class="hobby-icon">⛵</span>
+                <h3>Segeln</h3>
+            </a>
+
+            <a href="unterseiten/wandern.html" class="hobby-btn">
+                <span class="hobby-icon">🥾</span>
+                <h3>Wandern</h3>
+            </a>
+
+            <a href="unterseiten/musi.html" class="hobby-btn">
+                <img src="pictures\clarinet.png" alt="clarinet" class="hobby-icon">
+                <h3>Musi</h3>
+            </a>
+
+            <a href="unterseiten/ausfluege.html" class="hobby-btn">
+                <span class="hobby-icon">🌍</span>
+                <h3>Ausflüge</h3>
+            </a>
+        </div>
+
+        <!-- Der digitale Gutschein (Geschenk) -->
+        <div class="gutschein-bereich">
+            <h2>Mein Geschenk an dich 🎁</h2>
+            <p>Weil du immer für mich da bist, lade ich dich hiermit ein zu:</p>
+            
+            <div class="voucher-card">
+                <h3>Einer Wanderung auf einen Berg deiner Wahl</h3>
+            </div>
+
+            <div class="voucher-card">
+                <h3>Einen Spaziergang</h3>
+                <p>kann auch die große Runde sein :)</p>
+            </div>
+        </div>
+
+        <!-- Die Leiste ganz unten -->
+        <footer>
+            <p>Mit Liebe gemacht für dich ❤️</p>
+        </footer>
+    </main>
+
+    <!-- JS FÜR DEN VORHANG -->
+    <script>
+        const vorhang = document.getElementById("start-vorhang");
+        const hauptmenue = document.getElementById("hauptmenue");
+        let vorhangIstWeg = false;
+
+        function oeffneVorhang() {
+            if (vorhangIstWeg) return;
+            vorhang.style.transform = "translateY(-100vh)";
+            setTimeout(() => {
+                vorhang.style.display = "none";
+                hauptmenue.style.display = "block";
+                window.scrollTo(0, 0);
+            }, 800);
+            vorhangIstWeg = true;
+        }
+
+        window.addEventListener("wheel", function(e) { if (e.deltaY > 0) oeffneVorhang(); });
+        let startY = 0;
+        window.addEventListener("touchstart", function(e) { startY = e.changedTouches[0].screenY; });
+        window.addEventListener("touchend", function(e) {
+            if (startY > e.changedTouches[0].screenY + 30) oeffneVorhang();
+        });
+    </script>
+</body>
+</html>
